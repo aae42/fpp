@@ -27,7 +27,12 @@ possible_equations = choice_permutations.map do |choice|
   base.chars.zip(choice).flatten.compact.join
 end
 
-possible_equations.each do |equation|
-  result = evaluate(equation)
-  puts "#{equation} = 100" if result == 100
+correctly_evaluated_equations = possible_equations.select do |equation|
+  evaluate(equation) == 100
+end
+
+puts "#{correctly_evaluated_equations.length} equations found!"
+
+correctly_evaluated_equations.each do |equation|
+  puts "#{equation} = 100"
 end
